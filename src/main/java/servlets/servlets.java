@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "FrontController", value = "/frontController")
+@WebServlet(name = "FrontController", value = "/index.html")
 public class servlets extends HttpServlet {
 
     @Override
@@ -21,7 +21,7 @@ public class servlets extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("users", users);
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("second.jsp").forward(request, response);
     }
 
     @Override

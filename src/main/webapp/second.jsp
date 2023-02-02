@@ -13,7 +13,6 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="/frontController"/>
 <h1>Users</h1>
 <table>
     <thead>
@@ -28,10 +27,10 @@
     <c:forEach items="${sessionScope.users}" var="user">
     </tbody>
     <tr>
-        <td>User ID: <c:out value="${user.id}"/></td>
-        <td>First Name: <c:out value="${user.fname}"/></td>
-        <td>Last Name: <c:out value="${user.lname}"/></td>
-        <td>Phone: <c:out value="${user.phone}"/></td>
+        <td> <c:out value="${user.id}"/></td>
+        <td> <c:out value="${user.fname}"/></td>
+        <td> <c:out value="${user.lname}"/></td>
+        <td> <c:out value="${user.phone}"/></td>
     </tr>
     </c:forEach>
 </table>
