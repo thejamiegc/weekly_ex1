@@ -91,7 +91,7 @@ public class UserFacade {
             String SQL = "SELECT * FROM usertable";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 UserDTO userDTO = new UserDTO(rs.getString("fname"), rs.getString("lname"), rs.getString("pw"), rs.getString("phone"), rs.getString("address"));
                 userDTO.setId(rs.getInt("id"));
                 userDTOList.add(userDTO);

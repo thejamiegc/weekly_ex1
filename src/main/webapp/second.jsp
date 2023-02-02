@@ -10,7 +10,7 @@
 <html>
 
 <head>
-    <title>Title</title>
+    <title>Show users</title>
 </head>
 <body>
 <h1>Users</h1>
@@ -25,14 +25,14 @@
     </thead>
     <tbody>
     <c:forEach items="${sessionScope.users}" var="user">
-    </tbody>
-    <tr>
-        <td> <c:out value="${user.id}"/></td>
-        <td> <c:out value="${user.fname}"/></td>
-        <td> <c:out value="${user.lname}"/></td>
-        <td> <c:out value="${user.phone}"/></td>
-    </tr>
+        <tr>
+            <td><c:out value="${user.id}"/></td>
+            <td><c:out value="${user.fname}"/></td>
+            <td><c:out value="${user.lname}"/></td>
+            <td><c:out value="${user.phone}"/></td>
+        </tr>
     </c:forEach>
+    </tbody>
 </table>
 
 </body>
