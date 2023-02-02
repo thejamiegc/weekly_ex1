@@ -15,11 +15,11 @@ public class servlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        UserFacade uf = new UserFacade("startcode");
-//        List<UserDTO> users = uf.getAll();
-//
-//        HttpSession session = request.getSession();
-//        session.setAttribute("users", users);
+        UserFacade uf = new UserFacade("startcode");
+        List<UserDTO> users = uf.getAll();
+
+        HttpSession session = request.getSession();
+        session.setAttribute("users", users);
 
         request.getRequestDispatcher("second.jsp").forward(request, response);
     }
