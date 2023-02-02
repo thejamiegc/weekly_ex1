@@ -27,7 +27,7 @@ public class UserFacade {
 
     public UserDTO create(UserDTO user) {
         try {
-            String SQL = "INSERT INTO startcode_test.usertable (fname, lname, pw, phone, address) VALUES (?,?,?,?,?)";
+            String SQL = "INSERT INTO usertable (fname, lname, pw, phone, address) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getFname());
             ps.setString(2, user.getLname());
@@ -49,7 +49,7 @@ public class UserFacade {
 
     public UserDTO update(UserDTO userDTO) {
         try {
-            String SQL = "UPDATE startcode_test.usertable SET fname = ?, lname = ?, pw = ?, phone = ?, address = ? WHERE id = ?";
+            String SQL = "UPDATE usertable SET fname = ?, lname = ?, pw = ?, phone = ?, address = ? WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, userDTO.getFname());
             ps.setString(2, userDTO.getLname());
@@ -69,7 +69,7 @@ public class UserFacade {
     public UserDTO getById(long id) {
 
         try {
-            String SQL = "SELECT * FROM startcode_test.usertable WHERE id = ?";
+            String SQL = "SELECT * FROM usertable WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
@@ -88,7 +88,7 @@ public class UserFacade {
     public List<UserDTO> getAll() {
         List<UserDTO> userDTOList = new ArrayList<>();
         try {
-            String SQL = "SELECT * FROM startcode_test.usertable";
+            String SQL = "SELECT * FROM usertable";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -103,28 +103,28 @@ public class UserFacade {
     }
 
     public static void main(String[] args) {
-        try {
-            Connection con = DBConnector.connection("startcode");
-            String createTable = "CREATE TABLE IF NOT EXISTS `startcode`.`usertable` (\n" +
-                    "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
-                    "  `fname` VARCHAR(45) NULL,\n" +
-                    "  `lname` VARCHAR(45) NULL,\n" +
-                    "  `pw` VARCHAR(45) NULL,\n" +
-                    "  `phone` VARCHAR(45) NULL,\n" +
-                    "  `address` VARCHAR(45) NULL,\n" +
-                    "  PRIMARY KEY (`id`));";
-            con.prepareStatement(createTable).executeUpdate();
-            con.prepareStatement("DELETE FROM `startcode`.`usertable`").executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Connection con = DBConnector.connection("startcode");
+//            String createTable = "CREATE TABLE IF NOT EXISTS `usertable` (\n" +
+//                    "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+//                    "  `fname` VARCHAR(45) NULL,\n" +
+//                    "  `lname` VARCHAR(45) NULL,\n" +
+//                    "  `pw` VARCHAR(45) NULL,\n" +
+//                    "  `phone` VARCHAR(45) NULL,\n" +
+//                    "  `address` VARCHAR(45) NULL,\n" +
+//                    "  PRIMARY KEY (`id`));";
+//            con.prepareStatement(createTable).executeUpdate();
+//            con.prepareStatement("DELETE FROM `startcode`.`usertable`").executeUpdate();
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        }
 
         UserFacade fe = new UserFacade("startcode");
         UserDTO user = fe.create(new UserDTO("Hansi", "Hasagawa", "1234", "12345678", "Hansensvej 1"));
-        int id = user.getId();
-        fe.getAll().forEach(dto -> System.out.println(dto));
-        fe.update(new UserDTO(id, "Hans", "Hansen", "1234", "12345678", "Hansensvej 1"));
-        fe.getAll().forEach(dto -> System.out.println(dto));
+//        int id = user.getId();
+//        fe.getAll().forEach(dto -> System.out.println(dto));
+//        fe.update(new UserDTO(id, "Hans", "Hansen", "1234", "12345678", "Hansensvej 1"));
+//        fe.getAll().forEach(dto -> System.out.println(dto));
     }
 
 }

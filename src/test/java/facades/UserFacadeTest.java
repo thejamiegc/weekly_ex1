@@ -1,5 +1,6 @@
 package facades;
 
+import dtos.UserDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserFacadeTest {
+    UserFacade uf = new UserFacade("startcode_test");
     @BeforeEach
     void setUp() {
         Connection con = null;
@@ -51,6 +53,9 @@ class UserFacadeTest {
 
     @Test
     void create() {
+        System.out.println("Create");
+        UserDTO user = uf.create(new UserDTO("Helle", "Haugaard", "Hemmelig123", "40404040", "Rolighedsvej 3"));
+        assertEquals("Helle", user.getFname());
     }
 
     @Test
