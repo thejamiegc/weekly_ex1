@@ -26,3 +26,5 @@ VALUES ('Helge','Kaspersen','Hemmelig123','40434343','Gammel Landevej 1'),
 ```
 6. Push your code to github and check that the build is successful on github
 7. Check that your code is deployed on your droplet and that you can see the 2 users on the index page.
+8. Hint: on your droplet, you can check your log file with: `docker logs tomcat_3sem`
+9. Hint: on your droplet, you can check your database with: `docker exec -it mysql_3sem mysql -u root -p` and then enter your password

@@ -9,6 +9,8 @@ import java.util.Properties;
 
 public class DBConnector {
     private static String URL = "jdbc:mysql://localhost:3306/";
+
+
     private static String USER = "dev";
     private static String PW = "ax2";
 
@@ -22,7 +24,7 @@ public class DBConnector {
         if ( singleton == null ) {
             Class.forName( "com.mysql.cj.jdbc.Driver" );
             DBUserDTO dbUserDTO = getCredentails();
-            singleton = DriverManager.getConnection( URL+db, dbUserDTO.getUserName(), dbUserDTO.getPassword() );
+            singleton = DriverManager.getConnection( URL+db+"?enabledTLSProtocols=TLSv1.2", dbUserDTO.getUserName(), dbUserDTO.getPassword() );
         }
         return singleton;
     }
