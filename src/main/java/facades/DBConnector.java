@@ -24,7 +24,7 @@ public class DBConnector {
         if ( singleton == null ) {
             Class.forName( "com.mysql.cj.jdbc.Driver" );
             DBUserDTO dbUserDTO = getCredentails();
-            singleton = DriverManager.getConnection( URL+db+"?enabledTLSProtocols=TLSv1.2", dbUserDTO.getUserName(), dbUserDTO.getPassword() );
+            singleton = DriverManager.getConnection( dbUserDTO.getConnectionStr()+db+"?enabledTLSProtocols=TLSv1.2", dbUserDTO.getUserName(), dbUserDTO.getPassword() );
         }
         return singleton;
     }
@@ -33,10 +33,11 @@ public class DBConnector {
         if (isDeployed) {
             String user = System.getenv("USER");
             String pw = System.getenv("PW");
+            String connectionUrl = System.getenv("CONNECTION_STR");
             System.out.println("USING ENVIRONMENT VARIABLES: User: "+user+" PW: "+pw);
-            return new DBUserDTO(user, pw);
+            return new DBUserDTO(user, pw, connectionUrl);
         }
-        return new DBUserDTO(USER, PW);
+        return new DBUserDTO(USER, PW, URL);
         }
 
 }

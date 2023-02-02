@@ -3,10 +3,13 @@ package dtos;
 public class DBUserDTO {
     String userName;
     String password;
+    String connectionStr;
 
-    public DBUserDTO(String userName, String password) {
+    public DBUserDTO(String userName, String password, String connectionStr) {
         this.userName = userName;
         this.password = password;
+        this.connectionStr = connectionStr;
+
     }
 
     public String getUserName() {
@@ -23,5 +26,13 @@ public class DBUserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConnectionStr() {
+        return connectionStr;
+    }
+
+    public void setConnectionStr(String connectionStr) {
+        this.connectionStr = connectionStr;
     }
 }
