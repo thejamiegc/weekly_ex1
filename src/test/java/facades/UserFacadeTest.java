@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserFacadeTest {
     UserFacade uf = new UserFacade("startcode_test");
+    UserDTO user1;
     @BeforeEach
     void setUp() {
         Connection con = null;
@@ -30,14 +31,15 @@ class UserFacadeTest {
             con.prepareStatement(createTable).executeUpdate();
             con.prepareStatement("DELETE FROM `startcode_test`.`usertable`").executeUpdate();
 
-            String SQL = "INSERT INTO startcode_test.usertable (fname, lname, pw, phone, address) VALUES (?,?,?,?,?)";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, "Hans");
-            ps.setString(2, "Hansen");
-            ps.setString(3, "Hemmelig123");
-            ps.setString(4, "40404040");
-            ps.setString(5,"Rolighedsvej 3");
-            ps.executeUpdate();
+//            String SQL = "INSERT INTO startcode_test.usertable (fname, lname, pw, phone, address) VALUES (?,?,?,?,?)";
+//            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+//            ps.setString(1, "Hans");
+//            ps.setString(2, "Hansen");
+//            ps.setString(3, "Hemmelig123");
+//            ps.setString(4, "40404040");
+//            ps.setString(5,"Rolighedsvej 3");
+//            ps.executeUpdate();
+            user1 = uf.create(new UserDTO("Hans", "Hansen", "Hemmelig123", "40404040", "Rolighedsvej 3"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -60,13 +62,22 @@ class UserFacadeTest {
 
     @Test
     void update() {
+        System.out.println("Update");
+        UserDTO user = uf.update(new UserDTO(user1.getId(),"Annie", "Andersen", "Hemli", "40404040", "Rolighedsvej 3"));
+        assertEquals("Annie", user.getFname());
     }
 
     @Test
     void getById() {
+        System.out.println("GetById");
+        UserDTO user = uf.getById(user1.getId());
+        assertEquals("Hans", user.getFname());
     }
 
     @Test
     void getAll() {
+        System.out.println("GetAll");
+        int size = uf.getAll().size();
+        assertEquals(1, size);
     }
 }
