@@ -1,7 +1,7 @@
 # Start code for 1st week on 3rd semester
 ## Steps to follow:
 1. Fork this repository and clone it to your local machine
-2. Create a new repository on github and push your code to it
+2. This creates a new repository on github, that you can push your code to.
 3. In POM.xml:
   - Change the groupId to your github username
   - Change the artifactId to the name of your new repository
